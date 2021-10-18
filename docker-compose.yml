@@ -37,7 +37,7 @@ services:
       - es
 
   es8:
-    image: docker.elastic.co/elasticsearch/elasticsearch:8.0.0-alpha1
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.0.0-alpha2
     container_name: es8
     restart: always
     environment:
@@ -46,7 +46,18 @@ services:
       - discovery.seed_hosts=swarmee01
       - cluster.initial_master_nodes=swarmee01
       - http.cors.enabled=true
+      - xpack.security.enabled=false
       - http.cors.allow-credentials=true
+      - xpack.eql.enabled=false
+      - xpack.idp.enabled=false
+      - xpack.ccr.enabled=false
+      - xpack.graph.enabled=false
+      - xpack.watcher.enabled=false
+
+#      - xpack.monitoring.enabled=false
+      - xpack.license.self_generated.type=basic
+      - xpack.ml.enabled=false
+      - xpack.monitoring.collection.enabled=false
       - http.cors.allow-origin="*"
       - http.cors.allow-headers="X-Requested-With, X-Auth-Token, Content-Type, Content-Length, Authorization, Access-Control-Allow-Headers, Accept"
       - bootstrap.memory_lock=true # along with the memlock settings below, disables swapping
@@ -76,3 +87,4 @@ services:
 networks:
   es:
 
+## elastic user is: NchA-WA2qK80bv=nE6r-  loaded module [percolator]"  geoip database
